@@ -16,9 +16,18 @@
 
   <body>
   	<div class="container">
-  		<div id="cluster-map"></div>
+  		
 		<h1 class = "text-center">Coronavirus Tracker Application</h1>  
-		
+		<div id="cluster-map"></div>
+		<div id="state-legend" class="legend">
+			<span id="legendtitle">Confirmed Cases</span>
+			<div ><span style="background-color: #e31a1c"></span>50,000</div>
+			<div><span style="background-color: #fc4e2a"></span>10,000</div>
+			<div><span style="background-color: #fd8d3c"></span>2,000</div>
+			<div><span style="background-color: #feb24c"></span>500</div>
+			<div><span style="background-color: #fed976"></span>0</div>
+		</div>
+		 
 		
 		<!-- th:text="${totalReportedCases} -->
 		<div class="p-5 mb-5 bg-light">
@@ -29,6 +38,10 @@
 		    <p> 
 		    	<span>New cases reported since previous day: </span>
 		    	<span th:text="${totalNewCases}"></span>
+		    </p>
+		    <p> 
+		    	<span>Total recovered cases reported as of today: </span>
+		    	<span th:text="${totalRecoveredCases}"></span>
 		    </p>
 		  </div>
 		</div>
@@ -52,148 +65,156 @@
 	
   <script th:inline="javascript">
 	 /*<![CDATA[*/
-	
-	  const rawData = /*[[${locationStats}]]*/
+	const rawData = /*[[${locationStats}]]*/
 	  console.log(rawData);
-	  console.log(rawData[0].longitude);
 	  for(var i = 0; i < rawData.length; i++) {
+		  rawData[i].properties = {
+				  latesttotalcases: rawData[i].latestTotalCases,
+				  country: rawData[i].country,
+				  state: rawData[i].state
+		  };
 		  rawData[i].geometry = {
 				  type: "Point",
 				  coordinates: [
 					  rawData[i].longitude,
 					  rawData[i].latitude,
 	              ]
-		  }
+		  };
+		  
 	  };
 	  const locInfo = { features: rawData} ;
 	  console.log(locInfo);
-	  
-	  
-	  mapboxgl.accessToken = 'pk.eyJ1IjoiamE4NDEwMTQiLCJhIjoiY2tqMW1mdGt3MXB3czJxbW93c3BnbXc4eCJ9.e0Qv-1x8O2cwDbiAtBbzNg';
-	  var map = new mapboxgl.Map({
-	  	container: 'cluster-map',
-	  	style: 'mapbox://styles/mapbox/dark-v10',
-	  	center: [-103.59179687498357, 40.66995747013945],
-	  	zoom: 3
-	  });
+		 
+	mapboxgl.accessToken = 'pk.eyJ1IjoiamE4NDEwMTQiLCJhIjoiY2tqMW1mdGt3MXB3czJxbW93c3BnbXc4eCJ9.e0Qv-1x8O2cwDbiAtBbzNg';
+    var map = new mapboxgl.Map({
+        container: 'cluster-map',
+        zoom: 0.3,
+        center: [-103.59179687498357, 40.66995747013945],
+        style: 'mapbox://styles/mapbox/dark-v10'
+    });
 
-	  /* var totalCases1 = ['<', ['get', 'latestTotalCases'], 10000];
-	  var totalCases2 = ['all', ['>=', ['get', 'latestTotalCases'], 10000], ['<', ['get', 'latestTotalCases'], 50000]];
-	  var totalCases3 = ['all', ['>=', ['get', 'latestTotalCases'], 50000], ['<', ['get', 'latestTotalCases'], 100000]];
-	  var totalCases4 = ['all', ['>=', ['get', 'latestTotalCases'], 100000], ['<', ['get', 'latestTotalCases'], 5000000]];
-	  var totalCases5 = ['>=', ['get', 'latestTotalCases'], 5000000];
-	  var colors = ['#fed976', '#feb24c', '#fd8d3c', '#fc4e2a', '#e31a1c']; */
-	   
-	  map.on('load', function() {
-	  	// Add a new source from our GeoJSON data and
-	  	// set the 'cluster' option to true. GL-JS will
-	  	// add the point_count property to your source data.
-	  	map.addSource('locInfos', {
-	  		type: 'geojson',
-	  		// Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
-	  		// from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
-	  		data: locInfo,
-	  		cluster: true,
-	  		clusterMaxZoom: 14, // Max zoom to cluster points on
-	  		clusterRadius: 50, // Radius of each cluster when clustering points (defaults to 50)
-	  		/* clusterProperties: {
-	  			'totalCases1': ['+', ['case', totalCases1, 1, 0]],
+    map.addControl(new mapboxgl.NavigationControl({
+    	showZoom: true,
+        visualizePitch: true
+    }));
+
+   	  var totalCases1 = ['<', ['get', 'latesttotalcases'], 500];
+	  var totalCases2 = ['all', ['>=', ['get', 'latesttotalcases'], 500], ['<', ['get', 'latesttotalcases'], 2000]];
+	  var totalCases3 = ['all', ['>=', ['get', 'latesttotalcases'], 2000], ['<', ['get', 'latesttotalcases'], 10000]];
+	  var totalCases4 = ['all', ['>=', ['get', 'latesttotalcases'], 10000], ['<', ['get', 'latesttotalcases'], 50000]];
+	  var totalCases5 = ['>=', ['get', 'latesttotalcases'], 50000];
+	  var colors = ['#fed976', '#feb24c', '#fd8d3c', '#fc4e2a', '#e31a1c']; 
+
+    map.on('load', function () {
+        // add a clustered GeoJSON source for a sample set of earthquakes
+        map.addSource('locInfos', {
+            'type': 'geojson',
+            'data':locInfo,
+            'cluster': true,
+            'clusterRadius': 50,
+            'clusterProperties': {
+                // keep separate counts for each magnitude category in a cluster
+                'totalCases1': ['+', ['case', totalCases1, 1, 0]],
 	  			'totalCases2': ['+', ['case', totalCases2, 1, 0]],
 	  			'totalCases3': ['+', ['case', totalCases3, 1, 0]],
 	  			'totalCases4': ['+', ['case', totalCases4, 1, 0]],
 	  			'totalCases5': ['+', ['case', totalCases5, 1, 0]]
-	  		} */
-	  	});
-
-	  	map.addLayer({
-	  		id: 'clusters',
-	  		type: 'circle',
-	  		source: 'locInfos',
-	  		filter: ['has', 'point_count'],
-	  		paint: {
-	  			// Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
-	  			// with three steps to implement three types of circles:
-	  			//   * Blue, 20px circles when point count is less than 100
-	  			//   * Yellow, 30px circles when point count is between 100 and 750
-	  			//   * Pink, 40px circles when point count is greater than or equal to 750
-	  			'circle-color': [
-	  				'step',
-	  				['get', 'point_count'],
-	  				'#51bbd6',
-	  				100,
-	  				'#f1f075',
-	  				750,
-	  				'#f28cb1'
+            }
+        });
+        // circle and symbol layers for rendering individual earthquakes (unclustered points)
+        map.addLayer({
+            'id': 'unclustered-point',
+            'type': 'circle',
+            'source': 'locInfos',
+            'filter': ['!=', 'cluster', true],
+            'paint': {
+            	'circle-color': [
+	  				'case',
+	  				totalCases1,
+	  				colors[0],
+	  				totalCases2,
+	  				colors[1],
+	  				totalCases3,
+	  				colors[2],
+	  				totalCases4,
+	  				colors[3],
+	  				colors[4]
 	  			],
-	  			'circle-radius': [
-	  				'step',
-	  				['get', 'point_count'],
-	  				20,
-	  				100,
-	  				30,
-	  				750,
-	  				40
-	  			]
-	  		}
-	  	});
+                'circle-opacity': 0.6,
+                'circle-radius': 12
+            }
+        });
+        map.addLayer({
+            'id': 'unclustered_label',
+            'type': 'symbol',
+            'source': 'locInfos',
+            'filter': ['!=', 'cluster', true],
+            'layout': {
+                'text-field': [
+                    'number-format',
+                    ['get', 'latesttotalcases'],
+                    { 'min-fraction-digits': 0, 'max-fraction-digits': 0 }
+                ],
+                'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
+                'text-size': 10
+            },
+            'paint': {
+                'text-color': [
+                    'case',
+                    ['<', ['get', 'latesttotalcases'], 50000],
+                    'white',
+                    'white'
+                ]
+            }
+        });
 
-	  	map.addLayer({
-	  		id: 'cluster-count',
-	  		type: 'symbol',
-	  		source: 'locInfos',
-	  		filter: ['has', 'point_count'],
-	  		layout: {
-	  			'text-field': '{point_count_abbreviated}',
-	  			'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
-	  			'text-size': 12
-	  		}
-	  	});
+        // objects for caching and keeping track of HTML marker objects (for performance)
+        var markers = {};
+        var markersOnScreen = {};
 
-	  	map.addLayer({
-	  		id: 'unclustered-point',
-	  		type: 'circle',
-	  		source: 'locInfos',
-	  		filter: ['!', ['has', 'point_count']],
-	  		paint: {
-	  			'circle-color': '#11b4da',
-	  			'circle-radius': 4,
-	  			'circle-stroke-width': 1,
-	  			'circle-stroke-color': '#fff'
-	  		}
-	  	});
+        function updateMarkers() {
+            var newMarkers = {};
+            var features = map.querySourceFeatures('locInfos');
 
-	  	// inspect a cluster on click
-	  	map.on('click', 'clusters', function(e) {
-	  		var features = map.queryRenderedFeatures(e.point, {
-	  			layers: ['clusters']
-	  		});
-	  		var clusterId = features[0].properties.cluster_id;
-	  		map.getSource('locInfos').getClusterExpansionZoom(
-	  			clusterId,
-	  			function(err, zoom) {
-	  				if (err) return;
+            // for every cluster on the screen, create an HTML marker for it (if we didn't yet),
+            // and add it to the map if it's not there already
+            for (var i = 0; i < features.length; i++) {
+                var coords = features[i].geometry.coordinates;
+                var props = features[i].properties;
+                if (!props.cluster) continue;
+                var id = props.cluster_id;
 
-	  				map.easeTo({
-	  					center: features[0].geometry.coordinates,
-	  					zoom: zoom
-	  				});
-	  			}
-	  		);
-	  	});
+                var marker = markers[id];
+                if (!marker) {
+                    var el = createDonutChart(props);
+                    marker = markers[id] = new mapboxgl.Marker({
+                        element: el
+                    }).setLngLat(coords);
+                }
+                newMarkers[id] = marker;
 
-	  	// When a click event occurs on a feature in
-	  	// the unclustered-point layer, open a popup at
-	  	// the location of the feature, with
-	  	// description HTML from its properties.
-	  	map.on('click', 'unclustered-point', function(e) {
+                if (!markersOnScreen[id]) marker.addTo(map);
+            }
+            // for every marker we've added previously, remove those that are no longer visible
+            for (id in markersOnScreen) {
+                if (!newMarkers[id]) markersOnScreen[id].remove();
+            }
+            markersOnScreen = newMarkers;
+        }
+        
+		// click on single circle will shoe up the pop up message
+        map.on('click', 'unclustered-point', function(e) {
+	  		const latestCases = e.features[0].properties.latesttotalcases;
 	  		var coordinates = e.features[0].geometry.coordinates.slice();
-	  		var mag = e.features[0].properties.mag;
-	  		var tsunami;
-
-	  		if (e.features[0].properties.tsunami === 1) {
-	  			tsunami = 'yes';
-	  		} else {
-	  			tsunami = 'no';
+	  		
+	  		const country = e.features[0].properties.country;
+	  		var state = e.features[0].properties.state;
+	  		var exactLoc;
+	  		if(state.length === 0) {
+	  			exactLoc = country;
+	  		}
+	  		else {
+	  			exactLoc = state + ", " + country;
 	  		}
 
 	  		// Ensure that if the map is zoomed out such that
@@ -206,18 +227,126 @@
 	  		new mapboxgl.Popup()
 	  			.setLngLat(coordinates)
 	  			.setHTML(
-	  				'magnitude: ' + mag + '<br>Was there a tsunami?: ' + tsunami
+	  				'Location: ' + exactLoc + '<br>Latest Total Cases: ' +  latestCases
 	  			)
 	  			.addTo(map);
 	  	});
+		
+        // after the GeoJSON data is loaded, update markers on the screen and do so on every map move/moveend
+        map.on('data', function (e) {
+            if (e.sourceId !== 'locInfos' || !e.isSourceLoaded) return;
 
-	  	map.on('mouseenter', 'clusters', function() {
-	  		map.getCanvas().style.cursor = 'pointer';
-	  	});
-	  	map.on('mouseleave', 'clusters', function() {
-	  		map.getCanvas().style.cursor = '';
-	  	});
-	  });
+            map.on('move', updateMarkers);
+            map.on('moveend', updateMarkers);
+            updateMarkers();
+        });
+    });
+
+    // code for creating an SVG donut chart from feature properties
+    function createDonutChart(props) {
+        var offsets = [];
+        var counts = [
+            props.totalCases1,
+            props.totalCases2,
+            props.totalCases3,
+            props.totalCases4,
+            props.totalCases5
+        ];
+        var total = 0;
+        for (var i = 0; i < counts.length; i++) {
+            offsets.push(total);
+            total += counts[i];
+        }
+        var fontSize =
+            total >= 1000 ? 22 : total >= 100 ? 20 : total >= 10 ? 18 : 16;
+        var r = total >= 1000 ? 50 : total >= 100 ? 32 : total >= 10 ? 24 : 18;
+        var r0 = Math.round(r * 0.6);
+        var w = r * 2;
+
+        var html =
+            '<div><svg width="' +
+            w +
+            '" height="' +
+            w +
+            '" viewbox="0 0 ' +
+            w +
+            ' ' +
+            w +
+            '" text-anchor="middle" style="font: ' +
+            fontSize +
+            'px sans-serif; display: block">';
+
+        for (i = 0; i < counts.length; i++) {
+            html += donutSegment(
+                offsets[i] / total,
+                (offsets[i] + counts[i]) / total,
+                r,
+                r0,
+                colors[i]
+            );
+        }
+        html +=
+            '<circle cx="' +
+            r +
+            '" cy="' +
+            r +
+            '" r="' +
+            r0 +
+            '" fill="white" /><text dominant-baseline="central" transform="translate(' +
+            r +
+            ', ' +
+            r +
+            ')">' +
+            total.toLocaleString() +
+            '</text></svg></div>';
+
+        var el = document.createElement('div');
+        /* console.log(html); */
+        el.innerHTML = html;
+        return el.firstChild;
+    }
+
+    function donutSegment(start, end, r, r0, color) {
+        if (end - start === 1) end -= 0.00001;
+        var a0 = 2 * Math.PI * (start - 0.25);
+        var a1 = 2 * Math.PI * (end - 0.25);
+        var x0 = Math.cos(a0),
+            y0 = Math.sin(a0);
+        var x1 = Math.cos(a1),
+            y1 = Math.sin(a1);
+        var largeArc = end - start > 0.5 ? 1 : 0;
+
+        return [
+            '<path d="M',
+            r + r0 * x0,
+            r + r0 * y0,
+            'L',
+            r + r * x0,
+            r + r * y0,
+            'A',
+            r,
+            r,
+            0,
+            largeArc,
+            1,
+            r + r * x1,
+            r + r * y1,
+            'L',
+            r + r0 * x1,
+            r + r0 * y1,
+            'A',
+            r0,
+            r0,
+            0,
+            largeArc,
+            0,
+            r + r0 * x0,
+            r + r0 * y0,
+            '" fill="' + color + '" />'
+        ].join(' ');
+    }
+
+		 
 	  
 	  
 	  
