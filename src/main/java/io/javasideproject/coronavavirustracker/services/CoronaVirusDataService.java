@@ -91,14 +91,16 @@ public class CoronaVirusDataService {
 		
 		Iterable<CSVRecord> comfirmedUSRecords = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(csvComfirmedUSBodyReader);
 		for(CSVRecord record : comfirmedUSRecords) {
-			String areaStateCountry = record.get("Combined_Key");
+			
+			String country = record.get("Country_Region");
+			String state = record.get("Admin2") + ", " + record.get("Province_State");
 			int latestCases = Integer.parseInt( record.get(record.size() - 1) );
 		    int prevDayCases = Integer.parseInt( record.get(record.size() - 2) );
 		    
 		    LocationStats usLocStat = new LocationStats();
 		    
-		    usLocStat.setState("");
-		    usLocStat.setCountry(areaStateCountry);
+		    usLocStat.setState(state);
+		    usLocStat.setCountry(country);
 		    usLocStat.setLatestTotalCases(latestCases);
 		    usLocStat.setDiffFromPrevDay(latestCases - prevDayCases);
 		    usLocStat.setLatitude(record.get("Lat"));
@@ -106,6 +108,7 @@ public class CoronaVirusDataService {
 		    newStats.add(usLocStat);
 
 		}
+		
 		
 		
 		Iterable<CSVRecord> recoverRecords = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(csvRecoveredBodyReader);

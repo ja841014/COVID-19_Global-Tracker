@@ -15,6 +15,24 @@
   </head>
 
   <body>
+	  <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+	    <div class="container-fluid">
+	      <a class="navbar-brand" href="#">Covid-19 Tracker</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="navbar-toggler-icon"></span>
+	      </button>
+	      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+	        <div class="navbar-nav">
+	          <a class="nav-link" href="/">Home</a>
+	          <a class="nav-link" href="/safetyTips">Safety Tips</a>
+	          <a class="nav-link" href="/">News</a>
+	        </div>
+	        <div class="navbar-nav ml-auto" >
+	          <a class="nav-link" href="/">About Me</a>
+	        </div>
+	      </div>
+	    </div>
+	  </nav>
   	<div class="container">
   		
 		<h1 class = "text-center">Coronavirus Tracker Application</h1>  
@@ -45,7 +63,12 @@
 		    </p>
 		  </div>
 		</div>
-	
+		
+		<form th:action="@{/}" method="get">
+			<input name="country" id="searchBox" type="text" placeholder="Search The Country">
+			<button id="searchButton" type="submit">Search</button>
+		</form>
+		
 	
 		<table class="table">
 	      <tr>
@@ -55,16 +78,19 @@
 	        <th>Changes since last day</th>
 	      </tr>
 	      <tr th:each="locationStat : ${locationStats}">
+	      	
 	        <td th:text="${locationStat.state}"></td>
 	        <td th:text="${locationStat.country}"></td>
 	        <td th:text="${locationStat.latestTotalCases}">0</td>
 	        <td th:text="${locationStat.diffFromPrevDay}">0</td>
+	        
 	      </tr>
     	</table>
 	</div>
 	
   <script th:inline="javascript">
-	 /*<![CDATA[*/
+	 /*<![CDATA[*/	
+		 
 	const rawData = /*[[${locationStats}]]*/
 	  console.log(rawData);
 	  for(var i = 0; i < rawData.length; i++) {
@@ -355,6 +381,11 @@
   	
   </script>
   
+  <footer class="footer bg-dark py-3 mt-auto">
+    <div class="container text-center">
+        <span class="text-muted">&copf;2021</span>
+    </div>
+</footer>
   
   </body>
 
