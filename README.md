@@ -2,21 +2,51 @@
 
 ## Introduction
 	
-	It is a full stack application by using Java Spring boot framework and Thymeleaf template engine. This project visualize data which provided by Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE). The application can see total confirmed cases, new cases in each country and display on the cluster map. It also display the COVID-19 top news headlines and safety Tips.
+	<p> It is a full stack application by using Java Spring boot framework and Thymeleaf template engine. This project visualize data which provided by Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE). The application can see total confirmed cases, new cases in each country and display on the cluster map. It also display the COVID-19 top news headlines and safety Tips.</p>
 
 ## Architecture
 
-<img alt="FlowChart" src="https://github.com/ja841014/COVID-19_Global-Tracker/blob/master/src/main/resources/static/Image/FlowChart.svg" width="400">
+<img alt="FlowChart" src="https://github.com/ja841014/COVID-19_Global-Tracker/blob/master/src/main/resources/static/Image/FLowChart.svg" width="400">
 
 ## Features
 
-* Provide the latest information of the COVID-19 situation in various countries
-* Display the accumulated confirmed cases in various countries by using the cluster map
+* Fetch the latest information of the COVID-19 situation in various countries and display on the page
+* Display the accumulated confirmed cases in various countries on the cluster map by parsing self-built GeoJson format.
 * Search the specific country which is on the dashboard
 * Display top news which is related to COVID-19
 
 
-### Reference and things I learn in this project:
+## Built with
+
+### Frontend
+• <a href="https://getbootstrap.com/docs/4.0/getting-started/introduction/">Bootstrap</a>
+• <a href="https://www.mapbox.com/">Mapbox</a> 
+• <a href="https://newsapi.org/">NewsAPI</a> 
+• <a href="https://www.thymeleaf.org/">Thymeleaf template engine</a> 
+
+### Backend
+• <a href="https://spring.io/projects/spring-boot">Spring Boot</a> 
+
+
+
+
+## Demo Picture
+
+<p>This is the home page</p>
+<img alt="ShowPage" src="https://github.com/ja841014/COVID-19_Global-Tracker/blob/master/src/main/resources/static/Image/ShowPage.png" width="400">
+
+<p>Under the cluster map, it will show the list of the country and its information</p>
+<img alt="ListOfCountry" src="https://github.com/ja841014/COVID-19_Global-Tracker/blob/master/src/main/resources/static/Image/ListOfCountry.png" width="400">
+
+<p>This is the top news page. We can click any news that we are interest. we will be direct to the news page</p>
+<img alt="newspage" src="https://github.com/ja841014/COVID-19_Global-Tracker/blob/master/src/main/resources/static/Image/newspage.png" width="400">
+
+<p>This is the safety tips page</p>
+<img alt="safetyPage" src="https://github.com/ja841014/COVID-19_Global-Tracker/blob/master/src/main/resources/static/Image/safetyPage.png" width="400">
+
+
+
+## Reference and things I learn in this project:
 
 <a href="https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series
 ">Coivd-19 data</a>
