@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+    <title>Coronavirus News</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+   
+    <link th:href="@{/css/news.css}" rel="stylesheet" />
+  </head>
+  
+  <body>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+	    <div class="container-fluid">
+	      <a class="navbar-brand" href="#">Covid-19 Tracker</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="navbar-toggler-icon"></span>
+	      </button>
+	      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+	        <div class="navbar-nav">
+	          <a class="nav-link" href="/">Home</a>
+	          <a class="nav-link" href="/safetyTips">Safety Tips</a>
+	          <a class="nav-link" href="/news">News</a>
+	        </div>
+	        <div class="navbar-nav ml-auto" >
+	          <a class="nav-link" href="/">About Me</a>
+	        </div>
+	      </div>
+	    </div>
+	  </nav>
+  
+  	<div class="container">
+  		
+  		<!-- <h1 class="display-h2" th:text="${newsData}">0</h1> -->
+  		<div class="articles" style="position:-ms-page"></div>
+  	</div>
+  	
+  	
+  	<script th:inline="javascript">
+	 /*<![CDATA[*/	
+		 
+		 const rawData = /*[[${newsData}]]*/
+		 console.log(rawData);
+		 const jsonRawData = JSON.parse(rawData);
+		 
+	 	 
+		 const articlesDiv = document.querySelector(".articles");
+		 console.log(jsonRawData.articles);
+		 
+		 for(var p in jsonRawData.articles) {
+			// Create and add html elements to our html file
+			 console.log(jsonRawData.articles[p].author);
+			
+             const div = document.createElement("div");
+             div.className = "news";
+             div.innerHTML = `
+             <br>
+            	<a href="${jsonRawData.articles[p].url}">
+            	  <img src="${jsonRawData.articles[p].urlToImage}" class = "w3-hover-opacity" alt="News Image" style="width:100%">
+            	  <div class = "content">
+            	  	<h1>${jsonRawData.articles[p].title}</h1>
+            	  	 <p> ${jsonRawData.articles[p].description} </p>
+            	  	<h6 style ="color: rgb(255, 217, 0); font-weight:600;">${jsonRawData.articles[p].source.name}</h6>
+            	  </div>
+            	</a>
+            
+             `
+             
+             
+             
+             articlesDiv.appendChild(div);
+             // console.log(article.source.name);
+		 }
+		 
+     
+		
+		 
+	 /*]]>*/
+  	</script>
+  	
+    	 
+ 	<footer class="footer bg-dark py-3 mt-auto">
+    	<div class="container text-center">
+        	<span class="text-muted">&copf;2021</span>
+    	</div>
+	</footer>
+  
+  </body>
+
+</html>

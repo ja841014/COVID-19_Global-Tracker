@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+    <title>Coronavirus News</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+   
+    <!-- <link th:href="@{/css/news.css}" rel="stylesheet" /> -->
+  </head>
+  
+  <body>
+  	<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+	    <div class="container-fluid">
+	      <a class="navbar-brand" href="#">Covid-19 Tracker</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="navbar-toggler-icon"></span>
+	      </button>
+	      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+	        <div class="navbar-nav">
+	          <a class="nav-link" href="/">Home</a>
+	          <a class="nav-link" href="/safetyTips">Safety Tips</a>
+	          <a class="nav-link" href="/news">News</a>
+	        </div>
+	        <div class="navbar-nav ml-auto" >
+	          <a class="nav-link" href="/">About Me</a>
+	        </div>
+	      </div>
+	    </div>
+	  </nav>
+  	
+  <main class="col-lg-9 order-lg-2" role="main" aria-label="Main Content Area" style="margin : 0 auto">
+    <div class="row visual-element">
+      <div class="col">
+        <!-- Visual Element, this is what was the site identity in TP3 -->
+      </div>
+    </div>
+    <div class="section-nav-area">
+      <nav role="navigation" aria-label="Section Nav" class="w-100 sticky-top">
+        <!-- Page Title/Section Nav (mobile) -->
+      </nav>
+    </div>
+
+    <div class="row">
+      <div class="col content ">
+      
+       <br />
+        <div class="syndicate">
+          <div class="row ">
+            <div class="col-md-12 ">
+              <div class="row">
+              <div class="card border-0 mb-3 col-md-12">
+                <div class="card-body bg-white">
+                  <h2>Know How it Spreads</h2>
+                </div>
+              </div>
+            </div>
+              <div class="row" style="color: black">
+                <div class="col-md-3">
+                  <div class="d-none d-md-block cdc-viewports text-center text-center text-center"><img th:src="@{/Image/sneezingwoman.png}"
+                      class="img-fluid" alt="Illustration: woman sneezing on man" title=""></div>
+                  <div class="d-block d-md-none cdc-viewports text-center"><img th:src="@{Image/COVID_mobile_person_to_person.png}"
+                      class="img-fluid" alt="Illustration of woman sneezing on man"
+                      title="COVID_mobile_person_to_person"></div>
+                  <p></p>
+                </div>
+                <div class="col-md-9">
+                  <div class="card border-0 mb-3">
+                    <div class="card-body">
+                      <ul>
+                        <li>There is currently no vaccine to prevent coronavirus disease 2019 (COVID-19).</li>
+                        <li>The best way to prevent illness is to avoid being exposed to this virus.</li>
+                        <li>The virus is thought to spread mainly from person-to-person.
+                          <ul>
+                            <li>Between people who are in close contact with one another (within about 6 feet).</li>
+                            <li>Through respiratory droplets produced when an infected person coughs or sneezes.</li>
+                          </ul>
+                        </li>
+                        <li>These droplets can land in the mouths or noses of people who are nearby or possibly be
+                          inhaled into the lungs.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row ">
+                <div class="col-md-12">
+                  <div class="row ">
+                  <div class="card border-0 mb-3 col-md-12">
+                    <div class="card-body bg-white">
+                      <h2>Take steps to protect yourself</h2>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row ">
+                <div class="col-md-3">
+
+                  <div class="d-none d-md-block cdc-viewports text-center"><img th:src="@{/Image/protect-wash-hands.png}"
+                      class="img-fluid" alt="Illustration: washing hands with soap and water"
+                      title="protect-wash-hands"></div>
+                  <div class="d-block d-md-none cdc-viewports text-center"><img th:src="@{/Image/COVIDmobile_07_wash.png}"
+                      class="img-fluid" alt="Wash Your Hands" title="COVIDmobile_07_wash"></div>
+                  <p></p>
+                </div>
+                <div class="col-md-9">
+                  <div class="card border-0 mb-3">
+                    <div class="card-body bg-white">
+                      <h3>Clean your hands often</h3>
+                      <ul>
+                        <li><strong>Wash your hands</strong> often with soap and water for at least 20 seconds
+                          especially after you have been in a public place, or after blowing your nose, coughing, or
+                          sneezing.</li>
+                        <li>If soap and water are not readily available, <strong>use a hand sanitizer that contains at
+                            least 60% alcohol</strong>. Cover all surfaces of your hands and rub them together until
+                          they feel dry.</li>
+                        <li><strong>Avoid touching</strong> <strong>your eyes, nose, and mouth</strong> with unwashed
+                          hands.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row ">
+                <div class="col-md-12">
+                  <div class="row-fluid">
+                    <div class="vc_empty_space col-12 pb-1"><span class="vc_empty_space_inner"></span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="row ">
+                <div class="col-md-3">
+                  <div class="d-none d-md-block cdc-viewports text-center"><img th:src="@{/Image/protect-quarantine.png}"
+                      class="img-fluid" alt="Illustration: Woman quarantined to her home" title="protect-quarantine">
+                  </div>
+                  <div class="d-block d-md-none cdc-viewports text-center"><img th:src="@{/Image/COVIDmobile_01_quarantine.png}"
+                      class="img-fluid" alt="Quarantine" title="COVIDmobile_01_quarantine"></div>
+                  <p></p>
+                </div>
+                <div class="col-md-9">
+                  <div class="card border-0 mb-3">
+                    <div class="card-body bg-white">
+                      <h3>Avoid close contact</h3>
+                      <ul>
+                        <li><strong>Avoid close contact</strong> with people who are sick</li>
+                        <li>Put <strong>distance between yourself and other</strong> <strong>people</strong> if COVID-19
+                          is spreading in your community. This is especially important for people who
+                            are at higher risk of getting very sick.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row ">
+                <div class="col-md-12">
+                  <div class="row ">
+                  <div class="card border-0 mb-3 col-md-12">
+                    <div class="card-body bg-white">
+                      <h2>Take steps to protect others</h2>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row ">
+                <div class="col-md-3">
+                  <div class="d-none d-md-block cdc-viewports text-center"><img th:src="@{/Image/COVIDweb_02_bed.png}"
+                      class="img-fluid" alt="man in bed" title="COVIDweb_02_bed"></div>
+                  <div class="d-block d-md-none cdc-viewports text-center"><img th:src="@{/Image/COVIDmobile_02_bed.png}"
+                      class="img-fluid" alt="Bed" title="COVIDmobile_02_bed"></div>
+                  <p></p>
+                </div>
+                <div class="col-md-9">
+                  <div class="card border-0 mb-3">
+                    <div class="card-body bg-white">
+                      <h3>Stay home if you’re sick</h3>
+                      <ul>
+                        <li><strong>Stay home</strong> if you are sick, except to get medical care. Learn <a
+                            href="https://www.cdc.gov/coronavirus/2019-ncov/if-you-are-sick/steps-when-sick.html">what
+                            to do if you are sick</a>.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row ">
+                <div class="col-md-12">
+                  <div class="row-fluid">
+                    <div class="vc_empty_space col-12 pb-1"><span class="vc_empty_space_inner"></span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="row ">
+                <div class="col-md-3">
+                  <div class="d-none d-md-block cdc-viewports text-center"><img th:src="@{/Image/COVIDweb_06_coverCough.png}"
+                      class="img-fluid" alt="woman covering their mouth when coughing" title="COVIDweb_06_coverCough">
+                  </div>
+                  <div class="d-block d-md-none cdc-viewports text-center"><img th:src="@{/Image/COVIDmobile_06_coverCough.png}"
+                      class="img-fluid" alt="Cover Your Cough" title="COVIDmobile_06_coverCough"></div>
+                  <p></p>
+                </div>
+                <div class="col-md-9">
+                  <div class="card border-0 mb-3">
+                    <div class="card-body bg-white">
+                      <h3>Cover coughs and sneezes</h3>
+                      <ul>
+                        <li><strong>Cover your mouth and nose</strong> with a tissue when you cough or sneeze or use the
+                          inside of your elbow.</li>
+                        <li><strong>Throw used tissues</strong> in the trash.</li>
+                        <li>Immediately <strong>wash your hands</strong> with soap and water for at least 20 seconds. If
+                          soap and water are not readily available, clean your hands with a hand sanitizer that contains
+                          at least 60% alcohol.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row ">
+                <div class="col-md-12">
+                  <div class="row-fluid">
+                    <div class="vc_empty_space col-12 pb-1"><span class="vc_empty_space_inner"></span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="row ">
+                <div class="col-md-3">
+                  <div class="d-none d-md-block cdc-viewports text-center"><img th:src="@{/Image/COVIDweb_05_mask.png}"
+                      class="img-fluid" alt="man wearing a mask" title="COVIDweb_05_mask"></div>
+                  <div class="d-block d-md-none cdc-viewports text-center"><img th:src="@{/Image/COVIDmobile_05_mask.png}"
+                      class="img-fluid" alt="Mask" title="COVIDmobile_05_mask"></div>
+                  <p></p>
+                </div>
+                <div class="col-md-9">
+                  <div class="card border-0 mb-3">
+                    <div class="card-body bg-white">
+                      <h3>Wear a facemask if you are sick</h3>
+                      <ul>
+                        <li><strong>If you are sick:</strong> You should wear a facemask when you are around other
+                          people (e.g., sharing a room or vehicle) and before you enter a healthcare provider’s office.
+                          If you are not able to wear a facemask (for example, because it causes trouble breathing),
+                          then you should do your best to cover your coughs and sneezes, and people who are caring for
+                          you should wear a facemask if they enter your room. <a
+                            href="https://www.cdc.gov/coronavirus/2019-ncov/if-you-are-sick/steps-when-sick.html">Learn
+                            what to do if you are sick.</a></li>
+                      </ul>
+                      <ul>
+                        <li><strong>If you are NOT sick: </strong>According to CDC's latest advice, you are welcome to make simple cloth face coverings to 
+                          slow the spread of the virus. Facemasks may be in short supply and they should be saved for caregivers.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row ">
+                <div class="col-md-12">
+                  <div class="row-fluid">
+                    <div class="vc_empty_space col-12 pb-1"><span class="vc_empty_space_inner"></span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="row ">
+                <div class="col-md-3">
+                  <div class="d-none d-md-block cdc-viewports text-center"><img th:src="@{/Image/COVIDweb_09_clean.png}"
+                      class="img-fluid" alt="cleaning a counter" title="COVIDweb_09_clean"></div>
+                  <div class="d-block d-md-none cdc-viewports text-center"><img th:src="@{/Image/COVIDmobile_09_clean.png}"
+                      class="img-fluid" alt="Clean Surfaces" title="COVIDmobile_09_clean"></div>
+                  <p></p>
+                </div>
+                <div class="col-md-9">
+                  <div class="card border-0 mb-3">
+                    <div class="card-body bg-white">
+                      <h3>Clean and disinfect</h3>
+                      <ul>
+                        <li><strong>Clean AND disinfect <a
+                              href="https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/cleaning-disinfection.html">frequently
+                              touched surfaces</a>&nbsp;daily</strong>. This includes tables, doorknobs, light switches,
+                          countertops, handles, desks, phones, keyboards, toilets, faucets, and sinks.</li>
+                        <li><strong>If surfaces are dirty, clean them:</strong> Use detergent or soap and water prior to
+                          disinfection.</li>
+                        <li><strong>To disinfect: </strong>Most common EPA-registered household disinfectants will works.</li>
+                      </ul>
+                      
+                        <!-- </div> -->
+                       
+                      <!-- </div> -->
+                    </div>
+                  </div>
+                
+                  <p></p>
+                </div>
+              </div>
+            
+             
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  
+  
+  </main>
+  	
+  
+  </body>
+
+</html>

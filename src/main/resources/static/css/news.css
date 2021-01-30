@@ -1,0 +1,27 @@
+body {
+	background: grey;
+}
+/* .articles {
+      border:  3px solid lightslategray;
+  }
+   */
+.news {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    border: 5px lightgray
+  } 
+.news img {vertical-align: middle;}
+
+.news .content {
+    position: absolute;
+    bottom: 0;
+    background: rgb(0, 0, 0); /* Fallback color */
+    background: rgba(0, 0, 0, 0.2); /* Black background with 0.5 opacity */
+    color: #f1f1f1;
+    width: 100%;
+    padding: 5px;
+  }
+
+ news.a.content:hover, news.a.content:active {font-size: 150%;}
+ 

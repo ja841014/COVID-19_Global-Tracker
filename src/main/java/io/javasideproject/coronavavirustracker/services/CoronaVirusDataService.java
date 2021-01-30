@@ -34,7 +34,7 @@ public class CoronaVirusDataService {
 		return allStats;
 	}
 
-	//	when the server start execute this method
+	//	when the server start, execute this method
 	@PostConstruct
 	// the first hour's of day execute this method
 	@Scheduled(cron = "* * 1 * * *")

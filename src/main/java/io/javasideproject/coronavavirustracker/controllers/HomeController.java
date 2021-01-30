@@ -45,9 +45,5 @@ public class HomeController {
 		
 		return "home";
 	}
-	@GetMapping("/safetyTips")
-	public String safetytips(Model model) {
-		
-		return "safetyTips";
-	}
+
 }
