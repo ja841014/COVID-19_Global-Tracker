@@ -2,7 +2,7 @@
 
 ## Introduction
 	
-	<p> It is a full stack application by using Java Spring boot framework and Thymeleaf template engine. This project visualize data which provided by Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE). The application can see total confirmed cases, new cases in each country and display on the cluster map. It also display the COVID-19 top news headlines and safety Tips.</p>
+It is a full stack application by using Java Spring boot framework and Thymeleaf template engine. This project visualize data which provided by Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE). The application can see total confirmed cases, new cases in each country and display on the cluster map. It also display the COVID-19 top news headlines and safety Tips.
 
 ## Architecture
 
@@ -20,8 +20,11 @@
 
 ### Frontend
 • <a href="https://getbootstrap.com/docs/4.0/getting-started/introduction/">Bootstrap</a>
+
 • <a href="https://www.mapbox.com/">Mapbox</a> 
+
 • <a href="https://newsapi.org/">NewsAPI</a> 
+
 • <a href="https://www.thymeleaf.org/">Thymeleaf template engine</a> 
 
 ### Backend
