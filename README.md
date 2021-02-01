@@ -10,9 +10,9 @@ It is a full stack application by using Java Spring boot framework and Thymeleaf
 
 ## Features
 
-* Fetch the latest information of the COVID-19 situation in various countries and display on the page
-* Display the accumulated confirmed cases in various countries on the cluster map by parsing self-built GeoJson format.
-* Search the specific country which is on the dashboard
+* Fetch the latest information of the COVID-19 situation in various countries from JHU CSSE repository and update the data automatically every day. 
+* Display the accumulated confirmed cases in each country on the cluster map by parsing self-built GeoJson format into the MapBox.
+* Search the specific country which is on our dashboard
 * Display top news which is related to COVID-19
 
 
@@ -36,23 +36,22 @@ It is a full stack application by using Java Spring boot framework and Thymeleaf
 ## Demo Picture
 
 <p>This is the home page</p>
-<img alt="ShowPage" src="https://github.com/ja841014/COVID-19_Global-Tracker/blob/master/src/main/resources/static/Image/ShowPage.png" width="400">
+<img alt="ShowPage" src="https://github.com/ja841014/COVID-19_Global-Tracker/blob/master/src/main/resources/static/Image/ShowPage.png" width="500">
 
 <p>Under the cluster map, it will show the list of the country and its information</p>
-<img alt="ListOfCountry" src="https://github.com/ja841014/COVID-19_Global-Tracker/blob/master/src/main/resources/static/Image/ListOfCountry.png" width="400">
+<img alt="ListOfCountry" src="https://github.com/ja841014/COVID-19_Global-Tracker/blob/master/src/main/resources/static/Image/ListOfCountry.png" width="500">
 
 <p>This is the top news page. We can click any news that we are interest. we will be direct to the news page</p>
-<img alt="newspage" src="https://github.com/ja841014/COVID-19_Global-Tracker/blob/master/src/main/resources/static/Image/newspage.png" width="400">
+<img alt="newspage" src="https://github.com/ja841014/COVID-19_Global-Tracker/blob/master/src/main/resources/static/Image/newspage.png" width="500">
 
 <p>This is the safety tips page</p>
-<img alt="safetyPage" src="https://github.com/ja841014/COVID-19_Global-Tracker/blob/master/src/main/resources/static/Image/safetyPage.png" width="400">
+<img alt="safetyPage" src="https://github.com/ja841014/COVID-19_Global-Tracker/blob/master/src/main/resources/static/Image/safetyPage.png" width="500">
 
 
 
 ## Reference and things I learn in this project:
 
-<a href="https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series
-">Coivd-19 data</a>
+<a href="https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series">Coivd-19 data</a>
 
 <a href="https://docs.mapbox.com/mapbox-gl-js/example/updating-choropleth/">MapBox side information</a>
 

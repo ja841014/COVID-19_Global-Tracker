@@ -23,7 +23,7 @@
 	      </button>
 	      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 	        <div class="navbar-nav">
-	          <a class="nav-link" href="/">Home</a>
+	          <a class="nav-link active" href="/">Home</a>
 	          <a class="nav-link" href="/safetyTips">Safety Tips</a>
 	          <a class="nav-link" href="/news">News</a>
 	        </div>
@@ -66,7 +66,7 @@
 		
 		<form th:action="@{/}" method="get">
 			<input name="country" id="searchBox" type="text" placeholder="Search The Country">
-			<button id="searchButton" type="submit">Search</button>
+			<button class = "btn btn-info" id="searchButton" type="submit">Search</button>
 		</form>
 		
 	
