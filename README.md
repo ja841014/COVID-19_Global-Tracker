@@ -44,9 +44,6 @@ It is a full stack application by using Java Spring boot framework and Thymeleaf
 <p>This is the top news page. We can click any news that we are interest. we will be direct to the news page</p>
 <img alt="newspage" src="https://github.com/ja841014/COVID-19_Global-Tracker/blob/master/src/main/resources/static/Image/newspage.png" width="500">
 
-<p>This is the safety tips page</p>
-<img alt="safetyPage" src="https://github.com/ja841014/COVID-19_Global-Tracker/blob/master/src/main/resources/static/Image/safetyPage.png" width="500">
-
 
 
 ## Reference and things I learn in this project:
